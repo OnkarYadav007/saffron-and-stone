@@ -23,11 +23,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile drawer on route navigation
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -121,6 +116,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  onClick={() => setMenuOpen(false)}
                   className={`flex items-center justify-between py-3 text-sm font-semibold tracking-wider uppercase border-b border-[#D4AF37]/10 transition-colors ${
                     isActive ? "text-[#FBBF24] pl-2" : "text-[#FAF8F5] hover:text-[#FBBF24]"
                   }`}
@@ -139,6 +135,7 @@ export default function Navbar() {
           <li className="pt-4 pb-2">
             <Link
               href="/reservation"
+              onClick={() => setMenuOpen(false)}
               className="btn-gold w-full justify-center text-xs py-3"
             >
               ✦ Book a Table Online
