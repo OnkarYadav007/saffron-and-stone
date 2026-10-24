@@ -16,114 +16,131 @@ const signatureDishes = menuCategories
 export default function HomePage() {
   return (
     <>
-      {/* ══ HERO ══════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background image */}
+      {/* ══ HERO SECTION ════════════════════════════════════════════════ */}
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-[#0A0A0A]">
+        {/* Background Image & Ambient Gradients */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/hero.jpg"
             alt="Saffron & Stone restaurant ambiance"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
           />
-          {/* Multi-layer overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-surface-base/95 via-surface-base/70 to-surface-base/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface-base/60 via-transparent to-surface-base/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/85 to-[#0A0A0A]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/60" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 w-full">
           <div className="max-w-2xl">
-            {/* Eyebrow */}
-            <p className="text-gold-400 text-xs tracking-[0.4em] uppercase font-sans font-medium mb-6 animate-fade-in">
-              ✦ Koregaon Park, Pune ✦
-            </p>
+            {/* Location Eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/50 mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#FBBF24] animate-ping" />
+              <span className="text-[#FBBF24] text-xs tracking-[0.3em] uppercase font-sans font-bold">
+                Koregaon Park, Pune
+              </span>
+            </div>
 
             {/* Headline */}
-            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-6 animate-slide-up" style={{ animationDelay: "0.1s" }}>
+            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.1] mb-6 text-[#FFFFFF]">
               Where Every <br />
               <span className="text-gold-shimmer italic">Bite</span> Tells<br />
               a Story.
             </h1>
 
             {/* Tagline */}
-            <p className="text-cream/60 text-lg font-light leading-relaxed mb-10 max-w-md animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              Modern Indian &amp; Continental fine dining, crafted with heritage spices
-              and a passion for the extraordinary.
+            <p className="text-[#FAF8F5] text-lg sm:text-xl font-normal leading-relaxed mb-10 max-w-xl">
+              Modern Indian &amp; Continental fine dining in Pune. Reimagining regal culinary heritage with contemporary artistry and passion.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-              <Link href="/reservation" className="btn-gold">
-                Reserve a Table
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/reservation" className="btn-gold text-sm py-4 px-8">
+                ✦ Reserve a Table
               </Link>
-              <Link href="/menu" className="btn-outline-gold">
-                Explore Menu
+              <Link href="/menu" className="btn-outline-gold text-sm py-4 px-8">
+                Explore The Menu →
               </Link>
             </div>
 
-            {/* Quick stats */}
-            <div className="flex gap-10 mt-14 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+            {/* Credibility Stats */}
+            <div className="flex gap-8 sm:gap-12 mt-14 pt-8 border-t border-[#D4AF37]/25">
               {[
-                { value: "12+",    label: "Years" },
-                { value: "4.9★",   label: "Rating" },
-                { value: "50k+",   label: "Guests" },
+                { value: "14+",   label: "Years of Heritage" },
+                { value: "4.9★",  label: "Guest Rating" },
+                { value: "50k+",  label: "Guests Hosted" },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="text-gold-400 font-serif text-2xl font-bold">{s.value}</div>
-                  <div className="text-cream/40 text-xs tracking-wider uppercase mt-1">{s.label}</div>
+                  <div className="text-[#FBBF24] font-serif text-3xl font-bold">{s.value}</div>
+                  <div className="text-[#D1C9BC] text-xs font-semibold tracking-wider uppercase mt-1">
+                    {s.label}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-float">
-          <span className="text-cream/30 text-xs tracking-widest uppercase">Scroll</span>
-          <div className="w-px h-10 bg-gradient-to-b from-gold-500/60 to-transparent" />
-        </div>
       </section>
 
-      {/* ══ SIGNATURE DISHES ══════════════════════════════════════════ */}
-      <section className="section-wrapper">
+      {/* ══ SIGNATURE DISHES ════════════════════════════════════════════ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center mb-16 reveal">
-          <p className="text-gold-500 text-xs tracking-[0.4em] uppercase font-sans mb-3">Our Heritage</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-cream mb-4">Signature Dishes</h2>
+          <p className="text-[#FBBF24] text-xs tracking-[0.4em] uppercase font-sans font-bold mb-3">
+            Culinary Masterpieces
+          </p>
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#FFFFFF] mb-4">
+            Signature Creations
+          </h2>
           <div className="gold-rule" />
-          <p className="text-cream/50 mt-4 max-w-md mx-auto text-sm leading-relaxed">
-            Four dishes that define who we are — each a chapter in the Saffron &amp; Stone story.
+          <p className="text-[#D1C9BC] mt-4 max-w-xl mx-auto text-base leading-relaxed">
+            Four iconic dishes that define our kitchen — where time-honored slow cooking meets contemporary gastronomy.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {signatureDishes.map((dish, i) => (
             <div
               key={dish.id}
-              className="card-dark group cursor-pointer reveal"
+              className="card-dark group overflow-hidden border-2 border-[#D4AF37]/25 hover:border-[#FBBF24] reveal"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               {dish.image && (
-                <div className="relative overflow-hidden h-60">
+                <div className="relative overflow-hidden h-64 sm:h-72 bg-[#121212]">
                   <img
                     src={dish.image}
                     alt={dish.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface-800/80 to-transparent" />
-                  {/* Signature badge */}
-                  <span className="absolute top-4 right-4 tag-gold">✦ Signature</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-transparent" />
+                  <span className="absolute top-4 right-4 tag-gold shadow-lg font-bold">
+                    ✦ Chef Signature
+                  </span>
                 </div>
               )}
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-serif text-xl text-cream group-hover:text-gold-400 transition-colors">{dish.name}</h3>
-                  <span className="text-gold-400 font-semibold font-sans">₹{dish.price}</span>
+              <div className="p-7">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="font-serif text-2xl font-bold text-[#FFFFFF] group-hover:text-[#FBBF24] transition-colors">
+                    {dish.name}
+                  </h3>
+                  <span className="text-[#FBBF24] font-bold font-sans text-xl ml-4 whitespace-nowrap">
+                    ₹{dish.price}
+                  </span>
                 </div>
-                <p className="text-cream/50 text-sm leading-relaxed">{dish.description}</p>
+                <p className="text-[#FAF8F5] text-sm leading-relaxed mb-4">
+                  {dish.description}
+                </p>
                 {dish.tags && (
-                  <div className="flex gap-2 flex-wrap mt-4">
+                  <div className="flex gap-2 flex-wrap pt-2 border-t border-[#D4AF37]/15">
                     {dish.tags.filter((t) => t !== "Signature").map((tag) => (
-                      <span key={tag} className={tag === "Chef's Pick" ? "tag-gold" : tag === "Vegetarian" ? "tag-green" : "tag-blue"}>
+                      <span
+                        key={tag}
+                        className={
+                          tag === "Chef's Pick"
+                            ? "tag-gold"
+                            : tag === "Vegetarian"
+                            ? "tag-green"
+                            : "tag-red"
+                        }
+                      >
                         {tag}
                       </span>
                     ))}
@@ -134,19 +151,23 @@ export default function HomePage() {
           ))}
         </div>
 
-        <div className="text-center mt-12 reveal">
-          <Link href="/menu" className="btn-outline-gold">
-            View Full Menu
+        <div className="text-center mt-14 reveal">
+          <Link href="/menu" className="btn-outline-gold px-10 py-4 text-sm font-bold">
+            View Complete Menu &amp; Wine List →
           </Link>
         </div>
       </section>
 
-      {/* ══ WHY US ════════════════════════════════════════════════════ */}
-      <section className="bg-surface-800 border-y border-gold-500/10 py-20 md:py-28">
+      {/* ══ THE EXPERIENCE (WHY US) ════════════════════════════════════ */}
+      <section className="bg-[#111111] border-y border-[#D4AF37]/25 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14 reveal">
-            <p className="text-gold-500 text-xs tracking-[0.4em] uppercase font-sans mb-3">Our Promise</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-cream mb-4">The Saffron &amp; Stone Way</h2>
+          <div className="text-center mb-16 reveal">
+            <p className="text-[#FBBF24] text-xs tracking-[0.4em] uppercase font-sans font-bold mb-3">
+              Uncompromising Standards
+            </p>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#FFFFFF] mb-4">
+              The Saffron &amp; Stone Standard
+            </h2>
             <div className="gold-rule" />
           </div>
 
@@ -154,96 +175,99 @@ export default function HomePage() {
             {[
               {
                 icon: "🌿",
-                title: "Farm-to-Fork",
-                text: "Every ingredient is sourced from trusted farms across Maharashtra and the Western Ghats — fresh, seasonal, and traceable.",
+                title: "Western Ghats Farm Sourcing",
+                text: "Heirloom grains, stone-ground flours, and fresh herbs hand-selected from artisanal farms across Maharashtra and Sahyadri valleys.",
               },
               {
-                icon: "👨‍🍳",
-                title: "Heritage Technique",
-                text: "Our chefs trained in Delhi, Mumbai, and Europe, bringing traditional dum, tandoor, and French methods together in perfect harmony.",
+                icon: "🏺",
+                title: "Clay Oven & French Technique",
+                text: "Centuries-old slow Dum cooking and live charcoal tandoor fires fused with classical French reduction sauces and emulsions.",
               },
               {
-                icon: "✦",
-                title: "White-Glove Service",
-                text: "From intimate dinners to corporate banquets, every guest receives our signature attentive, unhurried service.",
+                icon: "✨",
+                title: "Royal White-Glove Hospitality",
+                text: "From personalized table settings to curated wine pairings by our in-house sommelier, every dinner is treated as a grand celebration.",
               },
             ].map((item, i) => (
               <div
                 key={item.title}
-                className="text-center p-8 rounded-2xl border border-gold-500/15 bg-card-shine hover:border-gold-500/30 transition-all duration-400 reveal"
+                className="text-center p-8 rounded-2xl border-2 border-[#D4AF37]/20 bg-[#161616] hover:border-[#D4AF37]/60 transition-all duration-300 shadow-xl reveal"
                 style={{ transitionDelay: `${i * 120}ms` }}
               >
-                <div className="text-5xl mb-5 animate-float" style={{ animationDelay: `${i * 0.5}s` }}>
-                  {item.icon}
-                </div>
-                <h3 className="font-serif text-xl text-cream mb-3">{item.title}</h3>
-                <div className="w-8 h-px bg-gold-500/50 mx-auto mb-3" />
-                <p className="text-cream/50 text-sm leading-relaxed">{item.text}</p>
+                <div className="text-5xl mb-5">{item.icon}</div>
+                <h3 className="font-serif text-2xl font-bold text-[#FFFFFF] mb-3">{item.title}</h3>
+                <div className="w-12 h-[2px] bg-[#D4AF37] mx-auto mb-4" />
+                <p className="text-[#FAF8F5] text-sm leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══ TESTIMONIALS ══════════════════════════════════════════════ */}
-      <section className="section-wrapper">
-        <div className="text-center mb-14 reveal">
-          <p className="text-gold-500 text-xs tracking-[0.4em] uppercase font-sans mb-3">Voices</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-cream mb-4">What Our Guests Say</h2>
+      {/* ══ GUEST REVIEWS ══════════════════════════════════════════════ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="text-center mb-16 reveal">
+          <p className="text-[#FBBF24] text-xs tracking-[0.4em] uppercase font-sans font-bold mb-3">
+            Guest Testimonials
+          </p>
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#FFFFFF] mb-4">
+            Words From Our Patrons
+          </h2>
           <div className="gold-rule" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((t, i) => (
             <div
               key={t.id}
-              className="card-dark p-8 reveal"
+              className="card-dark p-8 border-2 border-[#D4AF37]/20 hover:border-[#D4AF37]/50 reveal"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1.5 mb-4">
                 {Array.from({ length: t.rating }).map((_, si) => (
-                  <span key={si} className="text-gold-400 text-sm">★</span>
+                  <span key={si} className="text-[#FBBF24] text-lg">★</span>
                 ))}
               </div>
-              <blockquote className="text-cream/70 text-sm leading-relaxed italic font-serif mb-6">
+              <blockquote className="text-[#FFFFFF] text-base leading-relaxed italic font-serif mb-6">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
-              <div className="flex items-center gap-3 border-t border-gold-500/10 pt-5">
-                <div className="w-9 h-9 rounded-full bg-gold-500/20 flex items-center justify-center text-gold-400 font-serif font-bold">
+              <div className="flex items-center gap-4 border-t border-[#D4AF37]/20 pt-5">
+                <div className="w-11 h-11 rounded-full bg-[#D4AF37]/25 border border-[#D4AF37]/50 flex items-center justify-center text-[#FBBF24] font-serif font-bold text-lg">
                   {t.name[0]}
                 </div>
                 <div>
-                  <p className="text-cream text-sm font-medium">{t.name}</p>
-                  <p className="text-cream/40 text-xs">{t.role}</p>
+                  <p className="text-[#FFFFFF] text-base font-bold">{t.name}</p>
+                  <p className="text-[#D1C9BC] text-xs font-medium">{t.role}</p>
                 </div>
-                <span className="ml-auto text-cream/30 text-xs">{t.date}</span>
+                <span className="ml-auto text-[#8C8476] text-xs font-mono">{t.date}</span>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ══ CTA BANNER ════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden">
+      {/* ══ RESERVATION CTA BANNER ═════════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-[#111111] border-t border-[#D4AF37]/30">
         <div className="absolute inset-0">
           <img src="/images/hero.jpg" alt="" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-surface-base/80" />
+          <div className="absolute inset-0 bg-[#0A0A0A]/85" />
         </div>
-        <div className="relative z-10 text-center py-24 px-4">
-          <p className="text-gold-500 text-xs tracking-[0.4em] uppercase font-sans mb-4">Make a Memory</p>
-          <h2 className="font-serif text-4xl md:text-6xl text-cream mb-6 reveal">
-            Your Table Awaits
-          </h2>
-          <p className="text-cream/50 mb-10 max-w-md mx-auto text-sm reveal">
-            Perfect for romantic evenings, family celebrations, and distinguished business dining.
+        <div className="relative z-10 text-center py-24 px-4 max-w-4xl mx-auto">
+          <p className="text-[#FBBF24] text-xs tracking-[0.4em] uppercase font-sans font-bold mb-4">
+            An Unforgettable Evening
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center reveal">
-            <Link href="/reservation" className="btn-gold">
-              Reserve Now
+          <h2 className="font-serif text-4xl sm:text-6xl font-bold text-[#FFFFFF] mb-6 reveal">
+            Your Table Awaits in Koregaon Park
+          </h2>
+          <p className="text-[#FAF8F5] mb-10 max-w-xl mx-auto text-base leading-relaxed reveal">
+            Whether an anniversary celebration, family milestone, or quiet evening with loved ones, allow us to host you in luxury.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-5 justify-center reveal">
+            <Link href="/reservation" className="btn-gold py-4 px-9 text-sm font-bold">
+              ✦ Reserve Online Now
             </Link>
-            <Link href="/contact" className="btn-outline-gold">
-              Call Us
+            <Link href="/contact" className="btn-outline-gold py-4 px-9 text-sm font-bold">
+              📞 Direct Inquiry
             </Link>
           </div>
         </div>

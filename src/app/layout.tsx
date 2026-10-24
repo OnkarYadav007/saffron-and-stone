@@ -1,24 +1,11 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["300", "400", "500", "600"],
-  display: "swap",
-});
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import BackToTop from "@/components/ui/BackToTop";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://saffronandstone.in"),
@@ -61,12 +48,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${poppins.variable}`}>
-      <body className="bg-surface-base text-cream overflow-x-hidden">
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-[#0A0A0A] text-[#FAF8F5] overflow-x-hidden pt-20">
+        <ScrollProgress />
         <ScrollReveal />
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
+        <BackToTop />
       </body>
     </html>
   );
