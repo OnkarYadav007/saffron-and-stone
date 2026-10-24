@@ -1,26 +1,162 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Smooth Scroll ─────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Base ──────────────────────────────────────────────────── */
+@layer base {
+  body {
+    @apply bg-surface-base text-cream font-sans antialiased;
+    background-color: #0A0A0A;
   }
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+  ::selection {
+    background-color: rgba(201, 168, 76, 0.3);
+    color: #F5ECD7;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #C9A84C #1A1A1A;
+  }
+  *::-webkit-scrollbar { width: 6px; }
+  *::-webkit-scrollbar-track { background: #1A1A1A; }
+  *::-webkit-scrollbar-thumb { background-color: #C9A84C; border-radius: 3px; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Components ────────────────────────────────────────────── */
+@layer components {
+
+  /* Gold divider line */
+  .gold-rule {
+    @apply h-px w-16 bg-gold-500 mx-auto my-4;
+  }
+  .gold-rule-left {
+    @apply h-px w-16 bg-gold-500 my-4;
+  }
+
+  /* Buttons */
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-3.5 rounded-full
+           bg-gold-gradient text-surface-base font-semibold text-sm tracking-widest uppercase
+           hover:shadow-gold-lg hover:scale-105
+           active:scale-95
+           transition-all duration-300;
+    background-size: 200% auto;
+    background-position: left center;
+  }
+  .btn-gold:hover {
+    background-position: right center;
+  }
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-3.5 rounded-full
+           border border-gold-500 text-gold-500 font-semibold text-sm tracking-widest uppercase
+           hover:bg-gold-500 hover:text-surface-base
+           active:scale-95
+           transition-all duration-300;
+  }
+
+  /* Section wrapper */
+  .section-wrapper {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28;
+  }
+
+  /* Dark card */
+  .card-dark {
+    @apply bg-surface-700 border border-gold-500/20
+           rounded-2xl shadow-card overflow-hidden
+           hover:shadow-card-hover hover:border-gold-500/40
+           transition-all duration-400;
+  }
+
+  /* Input field */
+  .input-dark {
+    @apply w-full px-5 py-3.5 rounded-xl
+           bg-surface-600 border border-gold-500/20
+           text-cream placeholder-cream/30
+           focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/30
+           transition-all duration-200;
+  }
+
+  /* Gold label tag — text tag usage */
+  .tag {
+    @apply text-xs px-2.5 py-1 rounded-full font-medium tracking-wide;
+  }
+  .tag-gold    { @apply tag bg-gold-500/15 text-gold-400 border border-gold-500/30; }
+  .tag-green   { @apply tag bg-emerald-900/40 text-emerald-400 border border-emerald-700/30; }
+  .tag-red     { @apply tag bg-red-900/40 text-red-400 border border-red-700/30; }
+  .tag-blue    { @apply tag bg-sky-900/40 text-sky-400 border border-sky-700/30; }
 }
+
+/* ── Scroll-Reveal ─────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* ── Gold shimmer text ──────────────────────────────────────── */
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #C9A84C 0%, #FFE080 40%, #C9A84C 60%, #FFD24D 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Noise overlay for depth ────────────────────────────────── */
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.04;
+}
+
+/* ── Duration utility ───────────────────────────────────────── */
+.duration-400 { transition-duration: 400ms; }
